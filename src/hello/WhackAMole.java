@@ -60,7 +60,7 @@ public class WhackAMole implements ActionListener {
 		JButton buttonPressed = (JButton) e.getSource();
 		if (buttonPressed.getText().equals("Mole!")) {
 			System.out.println("Bang!");
-			speak("guts");
+			speak("glory");
 			frame.dispose();
 			createUI();
 			points += 1;
