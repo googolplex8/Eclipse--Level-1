@@ -16,24 +16,28 @@ import javax.swing.JPanel;
 import org.teachingextensions.logo.Paintable;
 import org.teachingextensions.logo.PenColors;
 import org.teachingextensions.logo.Tortoise;
+import org.teachingextensions.logo.Turtle.Animals;
 
 public class StarvingTurtle implements KeyEventDispatcher {
 
 	// 1. Set a location for the cookie
 	Random rand = new Random();
-	int cookieX = rand.nextInt(100);
-	int cookieY = rand.nextInt(100);
+	int size = 1000;
+	int cookieX = rand.nextInt(size);
+	int cookieY = rand.nextInt(size);
 
 	// 2. Choose the speed you want the Tortoise to go at
 	int speed = 5;
 
 	void setup() {
 		// 3. Edit this intro message to your own style
+		Tortoise.getBackgroundWindow().setSize(size, size);
+		Tortoise.setAnimal(Animals.ExplodedTurtle);
 		JOptionPane.showMessageDialog(null, "Figure it out youself!");
 		System.out.println(cookieX + " " + cookieY);
 
 		// 4. For debugging purposes, show the cookie. The user won’t see this.
-		showCookie();
+		//showCookie();
 	}
 
 	private void goUp() {
@@ -63,26 +67,29 @@ public class StarvingTurtle implements KeyEventDispatcher {
 		int tortoiseLocationX = Tortoise.getX();
 		int tortoiseLocationY = Tortoise.getY();
 
-		// 7. If the Tortoise is within 100 pixels of the food, set the
-		// background color to yellow
-		if (Math.abs(tortoiseLocationX - cookieX) <= 100 && Math.abs(tortoiseLocationY - cookieY) <= 100) {
-			setBackgroundColor(Color.YELLOW);
-		}
-		// 8. If the Tortoise is within 50 pixels of the food, set the
-		// background color to orange
-		if (Math.abs(tortoiseLocationX - cookieX) <= 50 && Math.abs(tortoiseLocationY - cookieY) <= 50) {
-			setBackgroundColor(Color.ORANGE);
-		}
-		// 9. If the Tortoise is within 20 pixels of the food, set the
-		// background color to red
 		if (Math.abs(tortoiseLocationX - cookieX) <= 20 && Math.abs(tortoiseLocationY - cookieY) <= 20) {
 			setBackgroundColor(Color.RED);
 		}
+		else if (Math.abs(tortoiseLocationX - cookieX) <= 50 && Math.abs(tortoiseLocationY - cookieY) <= 50) {
+			setBackgroundColor(Color.ORANGE);
+		}
+		// 7. If the Tortoise is within 100 pixels of the food, set the
+		// background color to yellow
+		else if (Math.abs(tortoiseLocationX - cookieX) <= 100 && Math.abs(tortoiseLocationY - cookieY) <= 100) {
+			setBackgroundColor(Color.YELLOW);
+		}
+		else{
+			setBackgroundColor(Color.GRAY); 
+		}
+		// 8. If the Tortoise is within 50 pixels of the food, set the
+		// background color to orange
+		// 9. If the Tortoise is within 20 pixels of the food, set the
+		// background color to red
 		// 10. If the Tortoise is within 5 pixels of the cookie, make a pop-up
 		// to tell them they found it
 		if (Math.abs(tortoiseLocationX - cookieX) <= 5 && Math.abs(tortoiseLocationY - cookieY) <= 5) {
 			JOptionPane.showMessageDialog(null,
-					"Felicidades! You found the cookie yourself iwthout any directions that give everything away!!");
+					"Felicidades! You found the cookie yourself wthout any directions that give everything away!!");
 			Point point = getFirstLocation();
 			Tortoise.setX(point.x);
 			Tortoise.setY(point.y);
@@ -90,8 +97,9 @@ public class StarvingTurtle implements KeyEventDispatcher {
 		int getTimeElasped;
 		// 11. If more than 20 seconds have elapsed, tell them the turtle died
 		// of hunger!
-		if (getTimeElapsed() >= 20) {
-			JOptionPane.showMessageDialog(null, "404: Thats and error.");
+		if (getTimeElapsed() >= 30) {
+			JOptionPane.showMessageDialog(null, "404: Thats an error.");
+			System.exit(0);
 		}
 		// 12. If the Tortoise crosses it's own path, tell them they failed and
 		// move them back to the beginning
