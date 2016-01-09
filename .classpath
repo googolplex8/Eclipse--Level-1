@@ -5,6 +5,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/Users/league/Google Drive/league-jars/mail.jar"/>
 	<classpathentry kind="lib" path="/Users/league/Google Drive/league-jars/TeachingKidsProgramming - unicorn.jar"/>
-	<classpathentry kind="lib" path="/Users/league/Google Drive/league-jars/twitter4j-core-3.0.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
